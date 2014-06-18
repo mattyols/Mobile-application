@@ -75,22 +75,18 @@ $(function () {
 });
 </script>
 -->
-<script src="mapLoad.js" type="text/javascript"></script>
+<script src="mapLoad.js" type="text/javascript">onDeviceReady(); 
+    $('.mapIt').click(function () { 
+        initializeMaps();
+      }</script>
 <script type="text/javascript" charset="utf-8">
     //navigator.notification.alert("listen for deviceready");
     document.addEventListener("deviceready", onDeviceReady, false);
 
-    function onDeviceReady() {
-        //navigator.notification.alert("device ready");
-        ... 
-        // calls other initialization functions
-        ...
-        
-
-        $('.mapIt').click(function () { 
+    onDeviceReady(); 
+    $('.mapIt').click(function () { 
         initializeMaps();
-        ..
-    }
+      }
 </script>
 </head>
 
