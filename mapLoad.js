@@ -1,37 +1,82 @@
 
-var map;
+var map,
+    userPosition,
+    footscrayLocation,
+    directionsDisplay,
+    directionsService;
 
-function initialize() {
-  var mapOptions = {
-    zoom: 6
-    
-  };
-  map = new google.maps.Map(document.getElementById('theMap'),
-      mapOptions);
+    google.maps.event.addDomListener(window, 'load', setup);
 
-  // Try HTML5 geolocation
-  if(navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      var pos = new google.maps.LatLng(position.coords.latitude,
-                                       position.coords.longitude);
-      
-      var infowindow = new google.maps.InfoWindow({
-        map: map,
-        position: pos,
-        content: 'You are here!'
-      });
+function setup() {
+    document.addEventListener("deviceready", onDeviceReady, false);
 
-
-      map.setCenter(pos);
-    }, function() {
-      handleNoGeolocation(true);
-    });
-  } else {
-    // Browser doesn't support Geolocation
-    handleNoGeolocation(false);
-  }
+    function onDeviceReady() {
+        navigator.geolocation.getCurrentPosition(onSuccess, onError, {enableHighAccuracy:true});
+    }
 }
 
+function onSuccess(position) {
+    userPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    navigator.notification.alert("Found user position");
+
+    initializeMaps();
+    //$('#map-canvas').css({'height': $(window).height()/2, 'width': '99%'});
+}
+
+function onError(error) {
+    navigator.notification.alert("Code: " + error.code + ",\n" +
+                                 "Message: " + error.message);
+}
+
+function initializeMaps() {
+    directionsDisplay = new google.maps.DirectionsRenderer();
+    directionsService = new google.maps.DirectionsService();
+
+    footscrayLocation = new google.maps.LatLng(37.8007873, -144.8996734);
+
+    var myOptions = {
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        center: footscrayLocation
+    };
+       map = new google.maps.Map(document.getElementById('map-canvas'), myOptions);
+    directionsDisplay.setMap(map);
+
+    if (userPosition != '') {
+        var userPosMarker = new google.maps.Marker({
+            position: userPosition,
+            map: map,
+            title: "Din Placering"
+        });
+
+        calculateRoute();
+    }
+    else {
+        navigator.notification.alert("userPosition is null");
+    }
+}
+
+function reloadGoogleMap() {
+    if (map === null || map === undefined) {
+        navigator.notification.alert("map is %s", map);
+    }
+    else {
+        var currCenter = map.getCenter();
+        google.maps.event.trigger(map, "resize");
+        map.setCenter(currCenter);
+        map.setZoom(12);
+        //navigator.notification.alert("reloaded map");
+    }
+}
+
+
+
+
+
+
+
+
+
+//Button function
 $('.mapIt').click(function () {   
     makeMap();
     var dest = null;
@@ -67,12 +112,7 @@ $('.mapIt').click(function () {
   }
 
 
-function handleNoGeolocation(errorFlag) {
-  if (errorFlag) {
-    var content = 'Error: The Geolocation service failed.';
-  } else {
-    var content = 'Error: Your browser doesn\'t support geolocation.';
-  }
+
 
   var options = {
     map: map,
@@ -84,4 +124,4 @@ function handleNoGeolocation(errorFlag) {
   map.setCenter(options.position);
 }
 
-google.maps.event.addDomListener(window, 'load', initialize);
+
