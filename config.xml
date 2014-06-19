@@ -6,10 +6,10 @@
         id        = "com.phonegap.hello-world"
         version   = "1.0.0">
 
-    <name>my spp</name>
+    <name>Footscray Food Vans</name>
 
     <description>
-        this is a test app
+        this is a test ico
     </description>
 
     <author href="http://phonegap.com" email="support@phonegap.com">
@@ -39,6 +39,7 @@
     <preference name="disable-cursor"             value="false" />          <!-- blackberry: prevents a mouse-icon/cursor from being displayed on the app -->
 
     <gap:plugin name="org.apache.cordova.vibration" />
+    <plugin name="Geolocation" value="org.apache.cordova.GeoBroker" />
 
     
     -->

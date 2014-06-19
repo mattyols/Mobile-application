@@ -74,7 +74,7 @@ function reloadGoogleMap() {
 
 
 
-
+/*
 
 //Button function
 $('.mapIt').click(function () {   
@@ -123,5 +123,5 @@ $('.mapIt').click(function () {
   var infowindow = new google.maps.InfoWindow(options);
   map.setCenter(options.position);
 }
-
+*/
 
