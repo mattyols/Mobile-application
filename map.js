@@ -1,18 +1,18 @@
-var app = [
+var app = {
 	initialize: function(){
 		this.bindEvents();
-	],
+	},
 	
 
 
 	bindEvents: function(){
-			document.addEventListener('deviceready', thisOnDeviceReady, false);
+			document.addEventListener('deviceready', this.onDeviceReady, false);
 	},
 
 
 
 
-	onDeviceReady; function(){
+	onDeviceReady: function(){
 		navigator.geolocation.getCurrentPosition(app.onSuccess, app.onError);
 	},
 
@@ -30,7 +30,7 @@ var app = [
 			mapTypeId: google.maps.MapTypeId.ROADMAP
 		};
 
-		var map = new google.maps.Map(document.getElementById("geolocation"), mapOptions);
+		var map = new google.maps.Map(document.getElementById("mapPage"), mapOptions);
 	},
 
 	onError: function(error){
@@ -38,3 +38,4 @@ var app = [
 	},
 
 };
+

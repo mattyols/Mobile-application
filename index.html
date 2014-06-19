@@ -79,7 +79,19 @@ $(function () {
 <script type="text/javascript">
     $('.mapIt').click(function () { 
         app.initialize();
-      }</script>
+      });</script>
+    <script type="text/javascript">
+    var rnd =[];
+rnd[0]="taco"
+rnd[1]="burger"
+rnd[2]="greek"
+
+function rndPage(){
+     var idx = Math.floor(Math.random()*rnd.length);
+ 
+     $.mobile.changePage('#' + rnd[idx], {transition:'pop'}
+   )};
+     </script>
 </head>
 
 <body>
@@ -94,6 +106,7 @@ $(function () {
       <li><a href="#greek">Greek</a></li>
       <li><a href="#burger">Burgers</a></li>
     </ul>
+    <a href="javascript:rndPage();" data-theme="b" data-role="button">Surpise Me</a>
   </div>
 </div>
 
@@ -149,14 +162,14 @@ $(function () {
   </p>  
   </div> 
 
-<p class="clearboth">This is content about the food van</p>
+  <p class="clearboth">This is content about the food van</p>
   <div data-role="controlgroup" data-type="horizontal" >
     <a href="#theMap" data-role="button" data-inline="false" class="mapIt">Map It</a>
     <a href="tel://put telephone hereXX" data-role="button" data-inline="false">Call</a>
   </div>
     <p class="errorMsg">Your location could not be detemined.</p> 
     <div id="gMap"></div>
-</div>
+  </div>
 
   <div data-role="footer">
     <h4>Footscray the University Town</h4>
@@ -185,22 +198,26 @@ $(function () {
   </div>
 
 
-<p class="errorMsg">Your location could not be detemined.</p> 
-<div id="gMap">
-</div>
+  <p class="errorMsg">Your location could not be detemined.</p> 
+  <div id="gMap">
+  </div>
 
   <div data-role="footer">
     <h4>Footscray the University Town</h4>
   </div>
 </div>
-<div data-role="page" id="geolocation" data-add-back-btn="true">
+
+
+<!--///////////////////Map page///////////////////////-->
+<div data-role="page" id="theMap" data-add-back-btn="true">
   <div data-role="header">
     <h1>Food Vans</h1>
   </div> 
-<div data-role="content"></div>
-  <div data-role="footer">
-    <h4>Footscray the University Town</h4>
-  </div> 
+  <div data-role="content" id ="map-canvas" height="250px">
+  </div>
+    <div data-role="footer">
+      <h4>Footscray the University Town</h4>
+    </div> 
 </div>
 </body>
 </html>
