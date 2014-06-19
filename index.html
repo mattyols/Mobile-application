@@ -75,19 +75,11 @@ $(function () {
 });
 </script>
 -->
-<script src="./mapLoad.js" type="text/javascript">onDeviceReady(); 
+<script src="map.js" type="text/javascript"> </script>
+<script type="text/javascript">
     $('.mapIt').click(function () { 
-        initializeMaps();
+        app.initialize();
       }</script>
-<script type="text/javascript" charset="utf-8">
-    //navigator.notification.alert("listen for deviceready");
-    document.addEventListener("deviceready", onDeviceReady, false);
-
-    onDeviceReady(); 
-    $('.mapIt').click(function () { 
-        initializeMaps();
-      }
-</script>
 </head>
 
 <body>
@@ -201,7 +193,7 @@ $(function () {
     <h4>Footscray the University Town</h4>
   </div>
 </div>
-<div data-role="page" id="map-canvas" data-add-back-btn="true">
+<div data-role="page" id="geolocation" data-add-back-btn="true">
   <div data-role="header">
     <h1>Food Vans</h1>
   </div> 

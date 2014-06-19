@@ -39,8 +39,7 @@
     <preference name="disable-cursor"             value="false" />          <!-- blackberry: prevents a mouse-icon/cursor from being displayed on the app -->
 
     <gap:plugin name="org.apache.cordova.vibration" />
-    <plugin name="Geolocation" value="org.apache.cordova.GeoBroker" />
-
+    
     
     -->
     <access origin="*"/>
@@ -51,7 +50,11 @@
     -->
 
 <feature name="http://api.phonegap.com/1.0/device"/>
-<feature name="http://api.phonegap.com/1.0/geolocation"/>
+
+<feature name="Geolocation">
+    <param name="android-package" value="org.apache.cordova.geolocation.GeoBroker" />
+</feature>
+
 <feature name="http://api.phonegap.com/1.0/notification"/>
 
 </widget>
