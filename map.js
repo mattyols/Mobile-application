@@ -1,23 +1,22 @@
-var app = {
-	initialize: function(){
+	function initialize(){
 		this.bindEvents();
-	},
+	}
 	
 
 
-	bindEvents: function(){
+	function bindEvents(){
 			document.addEventListener('deviceready', this.onDeviceReady, false);
-	},
+	}
 
 
 
 
-	onDeviceReady: function(){
-		navigator.geolocation.getCurrentPosition(app.onSuccess, app.onError);
-	},
+	function onDeviceReady(){
+		navigator.geolocation.getCurrentPosition(onSuccess, onError);
+	}
 
 
-	onSuccess: function(position){
+	function onSuccess(position){
 
 
 		var lng = position.coords.longitude;
@@ -30,12 +29,12 @@ var app = {
 			mapTypeId: google.maps.MapTypeId.ROADMAP
 		};
 
-		var map = new google.maps.Map(document.getElementById("mapPage"), mapOptions);
-	},
+		var map = new google.maps.Map(document.getElementById("tMap"), mapOptions);
+	}
 
-	onError: function(error){
+	function onError(error){
 		alert('code: '		+error.code		+ '\n' + 'message: ' + error.message + '\n');
-	},
+	}
 
-};
+
 
